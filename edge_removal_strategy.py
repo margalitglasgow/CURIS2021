@@ -9,6 +9,30 @@ from percolation import find_connected_nodes
 def isPath(node1, node2, graph):
     return True
 
+def isPathExceptEdge(edge, graph_dict):
+    node1 = edge[0]
+    node2 = edge[1]
+    N = len(graph_dict)
+    temp_graph_dict = graph_dict.copy()
+    # print (graph_dict[node1])
+    temp_graph_dict[node1].remove(node2)
+    # print (graph_dict[node1])
+    visited =[False]*N
+    queue=[]
+    queue.append(node1)
+    visited[node1] = True
+    while queue:
+        curr_node = queue.pop()
+        if curr_node == node2:
+        return True
+        
+        for neighbor in temp_graph_dict[curr_node]:
+        if visited[neighbor] == False:
+            queue.append(neighbor)
+            visited[neighbor] = True
+    graph_dict[node1].append(node2)
+  return False
+
 def findDangly(node, graph_dict, dangly):
     find_connected_nodes(node, graph_dict, dangly)
     return len(dangly)
