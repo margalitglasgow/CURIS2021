@@ -31,7 +31,7 @@ def isPathExceptEdge(edge, graph_dict):
             queue.append(neighbor)
             visited[neighbor] = True
     graph_dict[node1].append(node2)
-  return False
+    return False
 
 def findDangly(node, graph_dict, dangly):
     find_connected_nodes(node, graph_dict, dangly)
