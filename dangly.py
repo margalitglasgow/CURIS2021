@@ -3,8 +3,21 @@
 import heapq as hpq
 import random
 
-from configuration_model import tuples_to_dict
-from percolation import find_connected_nodes
+def tuples_to_dict(graph, N):
+    graph_dict = {}
+    for i in range(N):
+        graph_dict[i] = []
+    for edge in graph:
+        graph_dict[edge[0]].append(edge[1])
+    return graph_dict
+
+def find_connected_nodes(node, graph_dict, connected_component):
+    if node not in connected_component:
+        connected_component.append(node)
+    for neighbor in graph_dict[node]:
+        if neighbor not in connected_component:
+            find_connected_nodes(neighbor, graph_dict, connected_component)
+
 
 def isPath(node1, node2, graph_dict):
     N = len(graph_dict)
